@@ -1,11 +1,6 @@
 const express = require('express')
 const userRouter = express.Router()
-const { register, login } = require('../controller')
-
-userRouter.post('/register', (req, res) => {
-  register(req, res)
-})
-userRouter.post('/login', (req, res) => {
-  login(req, res)
-})
+const { getAll } = require('../controller/userController')
+const { loginRequired } = require('../util/validator')
+userRouter.get('/users', loginRequired, getAll)
 module.exports = userRouter
