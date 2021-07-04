@@ -1,5 +1,6 @@
-const { singin } = require('./UserController')
+const { register, login } = require('./UserController')
 
 module.exports = {
-  singin
+  register,
+  login
 }

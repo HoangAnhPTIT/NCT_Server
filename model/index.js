@@ -11,5 +11,6 @@ module.exports = {
   Users,
   Musics,
   Categories,
-  createDb
+  createDb,
+  db
 }

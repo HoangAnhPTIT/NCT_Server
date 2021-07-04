@@ -20,19 +20,24 @@ const User = db.define('user', {
       throw new Error('Do not try to set the `fullName` value!')
     }
   },
+  username: {
+    type: DataTypes.STRING(32),
+    field: 'username',
+    // unique: true,
+    allowNull: false
+  },
   email: {
     type: DataTypes.STRING,
     field: 'email',
+    // unique: true,
     isEmail: true
   },
   password: {
     type: DataTypes.STRING,
     field: 'password',
     set (value) {
-      bcrypt.hash(value, saltRounds, function (err, hashValue) {
-        if (err) throw err
-        this.setDataValue('password', hashValue)
-      })
+      const hashValue = bcrypt.hashSync(value, saltRounds)
+      this.setDataValue('password', hashValue)
     }
   },
   status: {
